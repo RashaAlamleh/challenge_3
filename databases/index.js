@@ -8,37 +8,30 @@ db.once('open', function () {
   console.log("we're connected!")
 });
 
-let schema = new mongoose.Schema({
-  // TODO: your schema here!
+let FormOne = new mongoose.Schema({
+  name: String,
+  email: String,
+  password: String
+});
+
+let FormTwo = new mongoose.Schema({
+  address:{
+    line1: String,
+    line2 : String,
+    city: String,
+    state: String,
+    zipcode : Number
+  },
+  phonenumber: Number
 })
 
-// let Repo = mongoose.model('Repo', repoSchema);
+let FormThree = new mongoose.Schema({
+  creditcard : Number,
+  expirydate : Date,
+  CVV : String,
+  billingZipCode : Number
+})
 
-// let save = (repos) => {
-//   // if (err) return console.log(err);
-//   // console.log(Repo)
-//   // TODO: Your code here
-//   // This function should save a repo or repos to
-//   // the MongoDB
-//   let newCols = [];
-//   //for each repo in the array, pull out the info we want to put in the database
-//   for (let i = 0; i < repos.length; i++) {
-//     let repo = repos[i];
-//     console.log("repo owner is ", repo.owner);
-//     let col = new Repo({
-//       id: id,
-//       name: name
-//       forks: forks,
-//       url: repo.git_url
-//     });
-//     newCols.push(col);
-//     col.save((err, request) => {
-//     if (err) {
-//       console.error(err);
-//     } else {
-//       console.log("hooray I just added ", request);
-//     }
-//   });
-// }}
 
-module.exports.save = save;
+
+//module.exports.save = save;
