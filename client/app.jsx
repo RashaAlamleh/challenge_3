@@ -20,8 +20,66 @@ class App extends React.Component {
         billingZipCode: '',
     }
 }
+handleChange = event => {
+    const {name, value} = event.target
+    this.setState({
+      [name]: value
+    })    
+  }
+   
+  handleSubmit = event => {
+    event.preventDefault()
+    const { email, username, password } = this.state
+    alert(`Your registration detail: \n 
+           Name: ${name} \n 
+           Email: ${email} \n
+           Password: ${password}`)
+  }
+  
+  _next = () => {
+    let currentStep = this.state.currentStep
+    currentStep = currentStep >= 2? 3: currentStep + 1
+    this.setState({
+      currentStep: currentStep
+    })
+  }
+    
+  _prev = () => {
+    let currentStep = this.state.currentStep
+    currentStep = currentStep <= 1? 1: currentStep - 1
+    this.setState({
+      currentStep: currentStep
+    })
+  }
 
+previousButton() {
+  let currentStep = this.state.currentStep;
+  if(currentStep !==1){
+    return (
+      <button 
+        className="btn btn-secondary" 
+        type="button" onClick={this._prev}>
+      Previous
+      </button>
+    )
+  }
+  return null;
+}
 
+nextButton(){
+  let currentStep = this.state.currentStep;
+  if(currentStep <3){
+    return (
+      <button 
+        className="btn btn-primary float-right" 
+        type="button" onClick={this._next}>
+      Next
+      </button>        
+    )
+  }
+  return null;
+}
+  
 render() {
     return (
         <div>
