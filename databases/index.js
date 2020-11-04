@@ -1,23 +1,23 @@
 const mongoose = require('mongoose');
 const mongoDB = 'mongodb://127.0.0.1/my_database';
-mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true});
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function () {
   console.log("we're connected!")
 });
 
-let FormOne = new mongoose.Schema({
+let accountSchema = new mongoose.Schema({
   name: String,
   email: String,
   password: String
 });
 
-let FormTwo = new mongoose.Schema({
+let shippingSchema = new mongoose.Schema({
   address:{
-    line1: String,
-    line2 : String,
+    addressOne: String,
+    addressTwo : String,
     city: String,
     state: String,
     zipcode : Number
@@ -25,13 +25,18 @@ let FormTwo = new mongoose.Schema({
   phonenumber: Number
 })
 
-let FormThree = new mongoose.Schema({
+let billingSchema = new mongoose.Schema({
   creditcard : Number,
   expirydate : Date,
-  CVV : String,
+  CVV : Number,
   billingZipCode : Number
 })
 
+let account = mongoose.model('account', accountSchema);
+let shipping = mongoose.model('shipping', shippingSchema);
+let billing = mongoose.model('billing', billingSchema);
 
 
-//module.exports.save = save;
+module.exports.account = account;
+module.exports.shipping = shipping;
+module.exports.billing = billing;
