@@ -32,10 +32,10 @@ let billingSchema = new mongoose.Schema({
   billingZipCode : Number
 })
 
+
 let account = mongoose.model('account', accountSchema);
 let shipping = mongoose.model('shipping', shippingSchema);
 let billing = mongoose.model('billing', billingSchema);
-
 
 module.exports.account = account;
 module.exports.shipping = shipping;
